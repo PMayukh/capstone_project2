@@ -25,7 +25,7 @@ stage('Checkout the code'){
        }
     
     stage('Remove the previous containers'){
-        setps{
+        steps{
         
             sh """
                   docker ps -a \
