@@ -10,7 +10,9 @@ agent any
 stages {
 
 stage('Checkout the code'){
-           steps{
+  
+    //* Checkout the code for the project 
+    steps{
              git url: 'https://github.com/PMayukh/capstone_project2.git', branch: 'master'
            }
 }  
@@ -25,6 +27,9 @@ stage('Checkout the code'){
        }
     
     stage('Remove previous container'){
+        
+        //* Remove the previously created containers to free up the port for the application 
+        
         steps{
         
             sh """
@@ -37,7 +42,9 @@ stage('Checkout the code'){
         }
     }   
     
-stage('Build and Push Image'){
+stage('Build and Push Image'){ 
+    
+    //* Build the image from the Dockerfile on the repository and move the same to Dockerhub
 steps {
  script{
    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
@@ -52,7 +59,10 @@ steps {
   }   
 
     stage('Run the docker image'){
-     steps{
+
+        //* Run the docker image to deploy the application on the container and expose on the relevant port 
+        
+        steps{
       
          sh """
          docker run -it -d -p 8123:8123 pmayukh/capjavaapp:${env.BUILD_NUMBER}
