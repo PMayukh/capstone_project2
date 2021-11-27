@@ -24,6 +24,19 @@ stage('Checkout the code'){
            }
        }
     
+    stage('Remove previous container'){
+        steps{
+        
+            sh """
+                 docker ps -a \
+                 | awk '{ print $1,$2 }' \
+                 | grep pmayukh/capjavaapp \
+                 | awk '{print $1 }' \
+                 | xargs -I {} docker rm -f {}
+               """
+        }
+    }   
+    
 stage('Build and Push Image'){
 steps {
  script{
