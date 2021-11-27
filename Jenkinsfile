@@ -29,7 +29,7 @@ steps {
  script{
    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {
 
-        def customImage = docker.build("pmayukh/javaapp:${env.BUILD_NUMBER}")
+        def customImage = docker.build("pmayukh/capjavaapp:${env.BUILD_NUMBER}")
 
         /* Push the container to the custom Registry */
         customImage.push()
@@ -38,6 +38,14 @@ steps {
    }
   }   
 
+    stage('Run the docker image'){
+    
+    image1="pmayukh/capjavaapp:${env.BUILD_NUMBER}"    
+    docker.image('image1').withRun('-p 8123:8123') {c ->
+    sh "curl -i http://localhost:8123/status"
+  }      
+ }   
+    
  }
 
 post {
