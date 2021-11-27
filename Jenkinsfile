@@ -42,7 +42,7 @@ steps {
      steps{
       
          sh """
-         docker run -it -d -p 8123:8123 pmayukh/capjavaapp:${env.BUILD_NUMBER}"
+         docker run -it -d -p 8123:8123 pmayukh/capjavaapp:${env.BUILD_NUMBER}
          """
          }
    }        
