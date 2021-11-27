@@ -11,7 +11,7 @@ stages {
 
 stage('Checkout the code'){
            steps{
-             git url: 'https://github.com/PMayukh/PG_Devops_Project.git', branch: 'master'
+             git url: 'https://github.com/PMayukh/capstone_project2.git', branch: 'master'
            }
 }
 
