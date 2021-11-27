@@ -39,11 +39,13 @@ steps {
   }   
 
     stage('Run the docker image'){
-    
+     steps{
+  
     image1="pmayukh/capjavaapp:${env.BUILD_NUMBER}"    
     docker.image('image1').withRun('-p 8123:8123') {c ->
     sh "curl -i http://localhost:8123/status"
-  }      
+  }  
+   }        
  }   
     
  }
