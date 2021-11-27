@@ -13,7 +13,7 @@ stage('Checkout the code'){
            steps{
              git url: 'https://github.com/PMayukh/capstone_project2.git', branch: 'master'
            }
-}
+}  
 
       stage('Build test and Package '){
       
